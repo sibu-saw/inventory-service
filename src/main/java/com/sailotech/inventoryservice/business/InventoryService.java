@@ -23,4 +23,11 @@ public class InventoryService {
 				? null
 				: modelMapper.map(inventory, InventoryDto.class);
 	}
+	
+	public InventoryDto addToInventory(InventoryDto inventoryDto) {
+		Inventory inventoryEntity = modelMapper.map(inventoryDto, Inventory.class);
+		inventoryEntity = inventoryRepository.save(inventoryEntity);
+		
+		return modelMapper.map(inventoryEntity, InventoryDto.class);
+	}
 }
